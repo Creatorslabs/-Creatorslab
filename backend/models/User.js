@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
+    // required: true,
     unique: true,
     lowercase: true,
   },
@@ -33,6 +33,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: null,
   },
+  referral: { type: String },
   referralCode: { type: String, unique: true },
   balance: { type: Number, default: 0 },
   isVerified: { type: Boolean, default: false },

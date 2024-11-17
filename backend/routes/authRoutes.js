@@ -4,6 +4,7 @@ const passport = require('../config/passport');
 
 const router = express.Router();
 const { signup, login, getProfile, registerUser, verifyEmail } = require('../controllers/authController');
+const { sendResponse } = require('../utils/responseHelper');
 const authMiddleware = require('../middleware/authMiddleware');
 
 // @route   POST /api/auth/signup
@@ -33,11 +34,34 @@ router.get('/login', (req, res) => {
 
 console.log(passport);
 router.get('/twitter', passport.authenticate('twitter'));
-router.get('/twitter/callback', passport.authenticate('twitter', {
-  successRedirect: '/api/auth/profile',
-  failureMessage: true, 
-  failureRedirect: '/api/auth/'
-}));
+router.get('/twitter/callback', 
+  passport.authenticate('twitter', {
+    failureMessage: true,
+    failureRedirect: '/api/auth/'
+  }),
+  (req, res) => {
+    // Redirect to a custom route where you handle the response
+    res.redirect(`/api/auth/callback/response`);
+  }
+);
+
+
+router.get('/callback/response', (req, res) => {
+  // Assuming the user is available in req.user
+  if (!req.user) {
+    return sendResponse(res, 401, 'error', 'User not authenticated', null);
+  }
+
+  // Send a successful response with JWT
+  return sendResponse(
+    res,
+    200,
+    'success',
+    'User authenticated successfully',
+    null,
+    req.user.id
+  );
+});
 
 // Discord Authentication
 router.get('/auth/discord', passport.authenticate('discord'));

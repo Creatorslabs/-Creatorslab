@@ -4,6 +4,10 @@ const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 
+const { sendResponse } = require('../utils/responseHelper');
+
+
+
 // @desc    Register new user
 // @route   POST /api/auth/signup
 // @access  Public
@@ -14,15 +18,11 @@ exports.signup = async (req, res) => {
     // Check if user exists
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ msg: 'User already exists' });
+      return sendResponse(res, 400, 'error', 'User already exists', null);
     }
 
     // Create new user
-    user = new User({
-      name,
-      email,
-      password,
-    });
+    user = new User({ name, email, password });
 
     // Hash password
     const salt = await bcrypt.genSalt(10);
@@ -30,26 +30,17 @@ exports.signup = async (req, res) => {
 
     await user.save();
 
-    // Create JWT
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    };
-
-    jwt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' },
-      (err, token) => {
-        if (err) throw err;
-        res.json({ token });
-      }
+    return sendResponse(
+      res,
+      201,
+      'success',
+      'User registered successfully',
+      null,
+      user.id
     );
-
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    return sendResponse(res, 500, 'error', 'Server error', null);
   }
 };
 
@@ -61,37 +52,28 @@ exports.login = async (req, res) => {
 
   try {
     // Check if user exists
-    let user = await User.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ msg: 'Invalid Credentials' });
+      return sendResponse(res, 400, 'error', 'Invalid Credentials', null);
     }
 
     // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ msg: 'Invalid Credentials' });
+      return sendResponse(res, 400, 'error', 'Invalid Credentials', null);
     }
 
-    // Create JWT
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    };
-
-    jwt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' },
-      (err, token) => {
-        if (err) throw err;
-        res.json({ token });
-      }
+    return sendResponse(
+      res,
+      200,
+      'success',
+      'Authentication successful',
+      null,
+      user.id
     );
-
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    return sendResponse(res, 500, 'error', 'Server error', null);
   }
 };
 
@@ -101,13 +83,12 @@ exports.login = async (req, res) => {
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
-    res.json(user);
+    return sendResponse(res, 200, 'success', 'User profile retrieved', user);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    return sendResponse(res, 500, 'error', 'Server error', null);
   }
 };
-
 
 // User Registration
 exports.registerUser = async (req, res) => {
@@ -120,28 +101,15 @@ exports.registerUser = async (req, res) => {
 
     if (user) {
       if (user.isVerified) {
-        // Create JWT
-        const payload = {
-          user: {
-            id: user.id,
-          },
-        };
-
-        jwt.sign(
-          payload,
-          process.env.JWT_SECRET,
-          { expiresIn: '1h' },
-          (err, token) => {
-            if (err) throw err;
-              return res.status(200).json({
-                status: 'success',
-                message: 'Email already verified.',
-                data: token
-              });
-      
-           
-          }
+        return sendResponse(
+          res,
+          200,
+          'success',
+          'Email already verified.',
+          null,
+          user.id
         );
+     
       }
 
     }else{
@@ -165,17 +133,19 @@ exports.registerUser = async (req, res) => {
     };
 
     await transporter.sendMail(mailOptions);
-    return res.status(201).json({
-      status: 'success',
-      message: 'User registered. Check your email for verification code..',
-      data: ''
-    });
+    return sendResponse(
+      res,
+      201,
+      'success',
+      'User registered. Check your email for verification code.',
+      null
+    );
 
     }
 
     
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return sendResponse(res, 500, 'error', error.message, null);
   }
 };
 
@@ -186,41 +156,30 @@ exports.verifyEmail = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user || user.verificationCode !== verificationCode) {
-      return res.status(400).json({
-        status: 'error',
-        message: 'Invalid verification code or email.',
-        data: token
-      });
+      return sendResponse(
+        res,
+        400,
+        'error',
+        'Invalid verification code or email.',
+        null
+      );
    
     }
 
     user.isVerified = true;
     user.verificationCode = null; // Clear verification code after verification
     await user.save();
-
-     // Create JWT
-     const payload = {
-      user: {
-        id: user.id,
-      },
-    };
-
-    jwt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' },
-      (err, token) => {
-        if (err) throw err;
-   
-        return res.status(200).json({
-          status: 'success',
-          message: 'Email verified successfully.',
-          data: token
-        });
-      }
+    return sendResponse(
+      res,
+      200,
+      'success',
+      'Email verified successfully.',
+      null,
+      user.id
     );
     
+    
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return sendResponse(res, 500, 'error', error.message, null);
   }
 };
