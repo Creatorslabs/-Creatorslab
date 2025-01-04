@@ -32,10 +32,10 @@ const NewTasks: React.FC = () => {
 
     return (
       <>
-        <section>
-          <div className='flex items-center justify-between m-4'>
-            <h2 className="text-2xl font-bold">New Tasks</h2>
-            <div className="flex items-center justify-between w-[15%]">
+        <section className='border border-white mt-2'>
+          <div className='flex items-center justify-between m-4 '>
+            <h2 className="text-lg md:text-2xl font-bold">New Tasks</h2>
+            <div className="flex items-center justify-between w-[60%] md:w-[15%]">
               {/* Toggle between showing all or paginated tasks */}
               <button onClick={toggleShowAll} className='underline text-[14px]'>
                 {showAllTasks ? `Show less` : `Show all (${newTask.length})`}
@@ -61,7 +61,7 @@ const NewTasks: React.FC = () => {
           </div>
 
           {/* Display the current cards */}
-          <div className={` flex items-center justify-between flex-grow mx-4  ${showAllTasks ? 'flex items-center justify-between flex-wrap mx-4' : 'grid-cols-3'} `}>
+          <div className={`flex flex-col md:flex-row items-center justify-between flex-grow mx-4  ${showAllTasks ? 'flex items-center justify-between flex-wrap mx-4' : 'grid-cols-3'} `}>
             {displayedCards.map((card, index) => (
               <TaskCard 
                 id = {card.id}

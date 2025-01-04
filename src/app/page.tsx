@@ -16,20 +16,20 @@ const Home: React.FC = () => {
   return (
       <div className="w-[90%] m-auto">
         <main className="container mx-auto py-8">
-          <section className=' flex items-center justify-between'>
-            <div className='rounded-lg border border-solid border-[#3f3f3f] w-[35%]'>
+          <section className=' flex flex-col md:flex-row items-center justify-between border border-white p-2'>
+            <div className='rounded-lg border border-solid border-[#3f3f3f] w-[100%] mt-2 md:w-[35%]'>
               <div className=' flex justify-between m-2'>
                 <p>Engage</p>
                 {/* <Link href={'/tasks'} className='font-bold text-[#5D3FD1]'>Show All</Link> */}
               </div>
-              <button className='p-3 rounded-lg bg-[url(/images/greenlemonbg.jpeg)] bg-no-repeat bg-cover font-bold m-2 w-[100px]'>Trending</button>
-              <button className='p-3 rounded-lg bg-[url(/images/button-bg01.jpeg)] bg-no-repeat bg-cover font-bold m-2 w-[100px]'>Promoted</button>
-              <button className='p-3 rounded-lg bg-[url(/images/button-bg02.jpeg)] bg-no-repeat bg-cover font-bold m-2 w-[100px]'>Projects</button>
-              <button className='p-3 rounded-lg bg-[url(/images/button-bg03.jpeg)] bg-no-repeat bg-cover font-bold m-2 w-[100px]'>Articles</button>
+              <button className='py-3 md:p-3  rounded-lg bg-[url(/images/greenlemonbg.jpeg)] bg-no-repeat bg-cover font-bold m-2 w-[60px] text-[12px]  md:w-[100px]'>Trending</button>
+              <button className='py-3 md:p-3  rounded-lg bg-[url(/images/button-bg01.jpeg)] bg-no-repeat bg-cover font-bold m-2 w-[60px] text-[12px]  md:w-[100px]'>Promoted</button>
+              <button className='py-3 md:p-3  rounded-lg bg-[url(/images/button-bg02.jpeg)] bg-no-repeat bg-cover font-bold m-2 w-[60px] text-[12px]  md:w-[100px]'>Projects</button>
+              <button className='py-3 md:p-3  rounded-lg bg-[url(/images/button-bg03.jpeg)] bg-no-repeat bg-cover font-bold m-2 w-[60px] text-[12px]  md:w-[100px]'>Articles</button>
               {/* <button className='p-3 rounded-lg bg-[url(/images/button-bg04.jpeg)] bg-no-repeat bg-cover font-bold m-2 w-[100px]'>Quest</button>
               <button className='p-3 rounded-lg bg-[url(/images/button-bg05.jpeg)] bg-no-repeat bg-cover font-bold m-2 w-[100px]'>All</button> */}
             </div>
-            <div className='rounded-lg bg-[#3f3f3f] w-[25%]'>
+            <div className='rounded-lg bg-[#3f3f3f] w-[100%] mt-2 md:w-[25%]'>
               {/* <div className=' flex justify-between'>
                 <p>Top Creators</p>
                 <Link href={'/'} className='font-bold text-[#5D3FD1]'>View All</Link>

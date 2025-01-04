@@ -41,7 +41,7 @@ const TrendingTasks: React.FC = () => {
       <section className='my-5'>
         <div className=' flex items-center justify-between m-4'>
           <h2 className="text-2xl font-bold">Trending Tasks</h2>
-          <div className="flex items-center justify-between w-[15%]">
+          <div className="flex items-center justify-between w-[60%] md:w-[15%]">
             {/* Toggle between showing all or paginated tasks */}
             <button onClick={toggleShowAll} className='underline text-[14px]'>
                 {showAllTasks ? `Show less` : `Show all (${newTask.length})`}
@@ -68,7 +68,7 @@ const TrendingTasks: React.FC = () => {
         
        
           {/* Display the current cards */}
-          <div className={` flex items-center justify-between flex-grow mx-4  ${showAllTasks ? 'flex items-center justify-between flex-wrap mx-4' : 'grid-cols-3'} `}>
+          <div className={` flex flex-col md:flex-row items-center justify-between flex-grow mx-4  ${showAllTasks ? 'flex items-center justify-between flex-wrap mx-4' : 'grid-cols-3'} `}>
             {displayedCards.map((card, index) => (
               <TrendingTaskCard 
                 key={index} 
