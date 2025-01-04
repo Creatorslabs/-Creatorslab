@@ -40,7 +40,7 @@ const TrendingTasks: React.FC = () => {
     <>
       <section className='my-5'>
         <div className=' flex items-center justify-between m-4'>
-          <h2 className="text-2xl font-bold">Trending Tasks</h2>
+          <h2 className="text-sm md:text-2xl font-bold">Trending Tasks</h2>
           <div className="flex items-center justify-between w-[60%] md:w-[15%]">
             {/* Toggle between showing all or paginated tasks */}
             <button onClick={toggleShowAll} className='underline text-[14px]'>

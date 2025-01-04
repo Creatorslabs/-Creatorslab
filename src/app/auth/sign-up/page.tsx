@@ -47,21 +47,21 @@ const SignUp : FC = () => {
   return (
     <>
       <div className=' w-[100vw] h-[100vh] py-[100px] bg-gradient-to-b from-[#161616]/70 via-[#5d3fd1]/15 to-[#03abff]/15'>
-        <div className=' w-3/4 mx-auto'>
+        <div className=' w-full md:w-3/4 mx-auto'>
           <nav className='flex items-center justify-between py-6'>
             <Link href={'/'}>
               <Image src={logo} alt='' width={150} height={200}/>
             </Link>
 
             <div>
-              <span className='text-[#606060]'>Already have an account?</span>
+              <span className='hidden md:visible text-[#606060]'>Already have an account?</span>
               <Link href={'/auth/log-in'} className='mx-4 border p-4 rounded-lg border-[#606060]'>Log in</Link>
               
             </div>
           </nav>
           
           <div className='my-[100px]'>
-            <form action="" className='border border-[#606060] rounded-lg w-[500px] m-auto p-8 bg-[#3f3f3f]/10 backdrop-filter backdrop-blur-sm'>
+            <form action="" className='border border-[#606060] rounded-lg w-[90%] md:w-[500px] m-auto p-8 bg-[#3f3f3f]/10 backdrop-filter backdrop-blur-sm'>
               <h2 className='font-syne font-bold text-xl'>Welcome to CreatorsLab</h2>
               <p className='text-sm text-[#606060]'>Join the global community of content creators and earn.</p>
 

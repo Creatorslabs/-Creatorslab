@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   return (
       <div className="w-[90%] m-auto">
         <main className="container mx-auto py-8">
-          <section className=' flex flex-col md:flex-row items-center justify-between border border-white p-2'>
+          <section className=' flex flex-col md:flex-row items-center justify-between  p-2'>
             <div className='rounded-lg border border-solid border-[#3f3f3f] w-[100%] mt-2 md:w-[35%]'>
               <div className=' flex justify-between m-2'>
                 <p>Engage</p>
@@ -40,13 +40,13 @@ const Home: React.FC = () => {
 
           <NewTasks />
 
-          <section className="mt-8">
+          <section className="mt-8 ">
             {/* <h2 className="text-2xl font-bold mb-4">Purchase $CLS</h2> */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-rows-1 md:grid-cols-2 gap-2 md:gap-6">
               <div className='flex items-center justify-between bg-[url(/images/banner-bg01.jpeg)] bg-no-repeat bg-cover p-6 rounded-lg'>
                 <div className="">
                   <h3 className="text-xl font-semibold">Purchase $CLS</h3>
-                  <p className='w-[400px]'>By staking or investing $CLS  in a project, users can show their support and potentially earn a share of the project’s future success, [Tokens, NFTs,  whitelist].</p>
+                  <p className='w-[200px] md:w-[400px]'>By staking or investing $CLS  in a project, users can show their support and potentially earn a share of the project’s future success, [Tokens, NFTs,  whitelist].</p>
                   <button className="bg-[#3f3f3f]/30 backdrop-filter backdrop-blur-sm text-white px-4 py-2 rounded-lg mt-4">Buy $CLS</button>
                 </div>
                 

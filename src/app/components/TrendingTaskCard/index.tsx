@@ -26,28 +26,28 @@ const TrendingTaskCard: React.FC<TrendingTaskCardProps> = ({ title, price, descr
     <h3 className="text-xl font-semibold mt-4">{title}</h3>
     <p className='mb-2 text-[#787878]'>{description}</p>
     <div className=' flex items-center justify-between'>
-      <div className=' flex items-center justify-between w-[70%]'>
-        <div className='flex items-center justify-between w-[15%] md:w-20% rounded-lg bg-[#222222] p-1'>
+      <div className=' flex items-center justify-around w-[70%]'>
+        <div className='flex items-center justify-between w-20% rounded-lg bg-[#222222] p-1'>
           <Image src={userIcon} alt='' width={20} height={20}/>
-          <span className='mx-2'>{participants}k</span>
+          <span className='mx-[2px] md:mx-2'>{participants}k</span>
         </div>
         
         <div className='flex items-center justify-between w-20% rounded-lg bg-[#222222] p-1'>
          <Image src={fireIcon} alt='' width={20} height={20}/>
-          <span className='mx-2'>{trending}</span>  
+          <span className='mx-[2px] md:mx-2'>{trending}</span>  
         </div>
       
         <div className='flex items-center justify-between w-20% rounded-lg bg-[#222222] p-1'>
           <Image src={twitterBird} alt='' width={20} height={20}/>
-          <span className='mx-2'>{retweets}k</span>
+          <span className=' mx-[2px] md:mx-2'>{retweets}k</span>
         </div>
         
-        <div className='flex items-center justify-between w-20% rounded-lg bg-[#222222] p-1'>
+        <div className='hidden md:flex items-center justify-between w-20% rounded-lg bg-[#222222] p-1'>
           <Image src={linkImage} alt='' width={20} height={20} />
         </div>
       </div>
 
-      <span className="text-sm text-white bg-[#5D3FD1] py-2 px-2 rounded-lg ">{price} $CLS</span>
+      <span className="text-sm text-white bg-[#5D3FD1] p-1 md:p-2 rounded-lg ">{price} $CLS</span>
     </div>
   </div>
 );

@@ -32,7 +32,7 @@ const NewTasks: React.FC = () => {
 
     return (
       <>
-        <section className='border border-white mt-2'>
+        <section className=' mt-2'>
           <div className='flex items-center justify-between m-4 '>
             <h2 className="text-lg md:text-2xl font-bold">New Tasks</h2>
             <div className="flex items-center justify-between w-[60%] md:w-[15%]">
