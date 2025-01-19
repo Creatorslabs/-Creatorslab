@@ -1,7 +1,9 @@
+'use client'
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ParentComponent from "./components/ParentComponent";
+import { SessionProvider } from 'next-auth/react';
 
 
 const geistSans = localFont({
@@ -30,7 +32,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ParentComponent>{children}</ParentComponent>
+        <ParentComponent>
+          <SessionProvider>
+            {children}
+          </SessionProvider>
+          
+        </ParentComponent>
       </body>
     </html>
   );

@@ -1,31 +1,3 @@
-// import React from 'react'
-// import newTask from '@/newTasks'
-// import TaskCard from '../components/TaskCard'
-
-
-// const page = () => {
-//   return (
-//     <div className="w-[80%] m-auto">
-//     <h1 className="text-3xl font-bold my-6">All Tasks</h1>
-//     <div className="flex items-center justify-between flex-wrap mx-4">
-//       {newTask.map((task) => (
-//         <TaskCard 
-//             key={task.id}
-//             id={task.id}
-//             title={task.title}
-//             description={task.description}
-//             price={task.price}
-//             taskBanner={task.image}
-//             posterImage={task.userImage}
-//         />
-//       ))}
-//     </div>
-//   </div>
-//   )
-// }
-
-// export default page
-
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -53,9 +25,9 @@ const page = () => {
                 </Link>
             </div> 
         </div>
-        <div className='w-full  m-auto flex items-start justify-between'>
-            <div className='w-[60%] p-10 bg-[#1c1c1c] rounded-xl'>
-                <div className='w-[80%] mx-auto'>
+        <div className='w-full m-auto flex flex-col md:flex-row items-start justify-between'>
+            <div className='w-full md:w-[60%] p-10 bg-[#1c1c1c] rounded-xl'>
+                <div className='w-full md:w-[80%] mx-auto'>
                     <div className='rounded-xl w-full bg-[url(/images/taskbg.jpeg)] bg-no-repeat bg-cover p-4'>
                         <div className='rounded-xl '>
                              <Image src={serif} alt='' width={80} height={80} />
@@ -86,8 +58,8 @@ const page = () => {
                     </div>
 
                     <div className='my-4'>
-                        <p className='mb-10 w-[480px]'>Follow TH CEO Abayomi Chukwudi on X! If you are already following Abayomi, simply complete the quest again to claim the $CLS.</p>
-                        <p className='mb-10 w-[480px]'>To learn more: <a href="" className='text-[#2aabee]'>https://www.CreatorsLab?node-id=80-586&node-type=frame&t=Myuuav</a></p>
+                        <p className='mb-10 w-[200px] md:w-[480px]'>Follow TH CEO Abayomi Chukwudi on X! If you are already following Abayomi, simply complete the quest again to claim the $CLS.</p>
+                        <p className='mb-10 w-[200px] md:w-[480px]'>To learn more: <a href="" className='text-[#2aabee]'>https://www.CreatorsLab?node-id=80-586&node-type=frame&t=Myuuav</a></p>
                     </div>
 
                     <div className='border border-[#606060] px-6 py-4 flex items-center justify-between rounded-lg'>
